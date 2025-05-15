@@ -31,6 +31,9 @@ spring.jpa.properties.hibernate.retry_interval=1000
 ### 方式二：安装nginx并改配置文件
 安装nginx并改/etc/nginx/sites-available/default文件
 
+
+
+
 server {
     listen 80;
     server_name yourdomain.com;
@@ -39,14 +42,17 @@ server {
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
-
-    
     location ~* \.(css|js|jpg|jpeg|png|gif|ico|woff|ttf|svg)$ {
         proxy_pass http://localhost:8080;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
 }
+
+
+
+
+
 
 检查配置并重启nginx
 
