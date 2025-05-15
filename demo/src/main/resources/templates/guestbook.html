@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>访客留言界面</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="./css/adminlte.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="./plugins/fontawesome-free/css/all.min.css">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <h1>
+            <a th:href="@{/}" class="brand-link">
+                <span class="brand-text font-weight-light">Turnin's Blog</span>
+            </a>
+        </h1>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                    <li class="nav-header">博客主页</li>
+                    <li class="nav-item">
+                        <a th:href="@{/}" class="nav-link">
+                            <i class="fa fa-home nav-icon"></i>
+                            <p>首页</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-header">所有文章</li>
+                    <li class="nav-item">
+                        <a th:href="@{/articles}" class="nav-link">
+                            <i class="fa fa-archive nav-icon"></i>
+                            <p>文章</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-header">点滴记录</li>
+                    <li class="nav-item">
+                        <a th:href="@{/guestbook}" class="nav-link active">
+                            <i class="fa fa-comments nav-icon"></i>
+                            <p>访客留言板</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper mt-3">
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <!-- /.card-header -->
+                            <div class="card-body position-relative p-3">
+                                <!-- Conversations are loaded here -->
+                                <!-- Message. Default to the left -->
+                                <div class="direct-chat-msg" style="height: 270px;">
+                                    <div class="direct-chat-infos clearfix">
+                                        <span class="direct-chat-name float-left">Turnin</span>
+                                        <span class="badge badge-warning float-left ml-1">博主</span>
+                                        <span class="direct-chat-timestamp float-left ml-2">2025-05-12</span>
+                                    </div>
+                                    <!-- /.direct-chat-infos -->
+                                    <img class="direct-chat-img position-absolute r-1" src="./upload/profile.png" alt="message user image">
+                                    <!-- /.direct-chat-img -->
+                                    <div class="direct-chat-text float-left">
+                                        有什么问题或者是对博客文章的建议可以写在这里,博主会改进。<br>
+                                        之后通过发文章的方式回复留言～可以浏览器收藏本博客网站。<br>
+                                        博客网站源码会在github上开源，欢迎关注～<br>
+                                        今后，会在这里发布一些比较零碎但是又能凑成知识点的文章<br>
+                                        也会定期分享个人心得。
+                                    </div>
+                                    <!-- /.direct-chat-text -->
+                                </div>
+                                <!-- /.direct-chat-msg -->
+                                <div class="direct-chat-messages">
+                                    <div th:each="observer : ${messages}" class="direct-chat-msg">
+                                        <div class="direct-chat-infos clearfix">
+                                            <span class="direct-chat-name float-right" th:text="${observer.nickname}"></span>
+                                            <span class="direct-chat-timestamp float-right ml-2" th:text="${#temporals.format(observer.observeTime, 'yyyy-MM-dd HH:mm')}"></span>
+                                        </div>
+                                        <img class="direct-chat-img position-absolute broader" src="/upload/user.png" alt="头像">
+                                        <div class="direct-chat-text float-right" th:text="${observer.message}"></div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="card-footer">
+                                <form th:action="@{/guestbook/add}" method="post">
+                                    <div class="input-group mb-2">
+                                        <input type="text" name="nickname" placeholder="你的昵称" class="form-control" required>
+                                    </div>
+                                    <div class="input-group">
+                                        <input type="text" name="message" placeholder="Type Message ..." class="form-control" required>
+                                        <span class="input-group-append">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card widget-user sticky-top">
+                            <div class="widget-user-header bg-info">
+                                <h3 class="widget-user-username">Turnin</h3>
+                                <h5 class="widget-user-desc">永远在学习的路上</h5>
+                            </div>
+                            <div class="widget-user-image">
+                                <img class="img-circle elevation-2" th:src="@{/upload/profile.png}" alt="Author">
+                            </div>
+                            <div class="card-body pt-5">
+                                <p class="text-muted">
+                                    欢迎参观我的CSDN博客：<a href="https://blog.csdn.net/weixin_53318879?type=blog">技术博客</a><br>
+                                    我的github: <a href="https://github.com/Re-restart">开源平台</a><br>
+                                    想要联系请发邮箱： lhyx999888@outlook.com<br>
+                                </p>
+                                <ul class="list-group list-group-unbordered">
+                                    <li class="list-group-item">
+                                        <strong><i class="far fa-bookmark mr-2"></i>文章分类</strong>
+                                        <a th:href="@{/articles/category/电机}" class="d-block link-title text-truncate">电机控制与常用算法</a>
+                                        <a th:href="@{/articles/category/系统}" class="d-block link-title">数学基础与matlab仿真</a>
+                                        <a th:href="@{/articles/category/机器人}" class="d-block link-title">机器人的设计与制作</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong><i class="fa fa-map-marker-alt mr-2"></i>位置</strong>
+                                        <div class="text-muted">China</div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong><i class="fa fa-pencil-alt mr-2"></i>技能</strong>
+                                        <div class="text-muted">
+                                            <span class="badge badge-success">Mechanical structure design</span>
+                                            <span class="badge badge-success">C/C++/Python/Java/C#</span>
+                                            <span class="badge badge-success">Embedded system</span>
+                                            <span class="badge badge-success">Software simulation</span>
+                                            <span class="badge badge-success">ML/DL/A little RL</span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong><i class="fa fa-lightbulb mr-2"></i>爱好</strong>
+                                        <div class="text-muted">
+                                            <span class="badge badge-warning">编程</span>
+                                            <span class="badge badge-warning">学习</span>
+                                            <span class="badge badge-warning">航拍</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <p class="text-center mb-1">
+            Copyright © 2025 Turnin's Blog. All rights reserved.
+        </p>
+        <p class="text-center">
+            <a href="">备案号</a>
+        </p>
+    </footer>
+</div>
+
+
+
+
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="./plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="./plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="./js/adminlte.min.js"></script>
+<!--  -->
+<script src="js/tooltip.init.js"></script>
+
+</body>
+</html>

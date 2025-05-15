@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>文章分类</title>
+    <link th:href="@{/plugins/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/adminlte.min.css}" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <h1>
+            <a th:href="@{/}" class="brand-link">
+                <span class="brand-text font-weight-light">Turnin's Blog</span>
+            </a>
+        </h1>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                    <li class="nav-header">博客主页</li>
+                    <li class="nav-item">
+                        <a th:href="@{/}" class="nav-link">
+                            <i class="fa fa-home nav-icon"></i>
+                            <p>首页</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-header">所有文章</li>
+                    <li class="nav-item">
+                        <a th:href="@{/articles}" class="nav-link active">
+                            <i class="fa fa-archive nav-icon"></i>
+                            <p>文章</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-header">点滴记录</li>
+                    <li class="nav-item">
+                        <a th:href="@{/guestbook}" class="nav-link">
+                            <i class="fa fa-comments nav-icon"></i>
+                            <p>访客留言板</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row mt-3">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">分类后的文章</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="list-group">
+                                <a th:each="article : ${articles}"
+                                   th:href="@{'/articles/' + ${article.category} + '/' + ${article.title}}"
+                                   class="list-group-item list-group-item-action">
+                                    <span th:text="${article.title}"></span>
+                                </a>
+                            </div>
+                            <div th:if="${error}" class="alert alert-danger mt-3" th:text="${error}"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card widget-user sticky-top">
+                        <div class="widget-user-header bg-info">
+                            <h3 class="widget-user-username">Turnin</h3>
+                            <h5 class="widget-user-desc">永远在学习的路上</h5>
+                        </div>
+                        <div class="widget-user-image">
+                            <img class="img-circle elevation-2" th:src="@{/upload/profile.png}" alt="Author">
+                        </div>
+                        <div class="card-body pt-5">
+                            <p class="text-muted">
+                                欢迎参观我的CSDN博客：<a href="https://blog.csdn.net/weixin_53318879?type=blog">技术博客</a><br>
+                                我的github: <a href="https://github.com/Re-restart">开源平台</a><br>
+                                想要联系请发邮箱： lhyx999888@outlook.com<br>
+                            </p>
+                            <ul class="list-group list-group-unbordered">
+                                <li class="list-group-item">
+                                    <strong><i class="fa fa-map-marker-alt mr-2"></i>位置</strong>
+                                    <div class="text-muted">China</div>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong><i class="fa fa-pencil-alt mr-2"></i>技能</strong>
+                                    <div class="text-muted">
+                                        <span class="badge badge-success">Mechanical structure design</span>
+                                        <span class="badge badge-success">C/C++/Python/Java/C#</span>
+                                        <span class="badge badge-success">Embedded system</span>
+                                        <span class="badge badge-success">Software simulation</span>
+                                        <span class="badge badge-success">ML/DL/A little RL</span>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong><i class="fa fa-lightbulb mr-2"></i>爱好</strong>
+                                    <div class="text-muted">
+                                        <span class="badge badge-warning">编程</span>
+                                        <span class="badge badge-warning">学习</span>
+                                        <span class="badge badge-warning">航拍</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <p class="text-center mb-1">
+            Copyright © 2025 Turnin's Blog. All rights reserved.
+        </p>
+        <p class="text-center">
+            <a href="">备案号</a>
+        </p>
+    </footer>
+</div>
+<!-- 共用JS文件 -->
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/adminlte.min.js}"></script>
+
+</body>
+</html>

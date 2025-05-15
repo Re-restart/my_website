@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="'欢迎来到Turnin的个人博客'"></title>
+  <link rel="stylesheet" th:href="@{/plugins/bootstrap/css/bootstrap.min.css}" />
+  <link rel="stylesheet" th:href="@{/css/adminlte.min.css}" />
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a th:href="@{/}" class="brand-link">
+      <img th:src="@{/upload/profile.png}" alt="Logo" class="brand-image img-circle elevation-3">
+      <span class="brand-text font-weight-light">Turnin's Blog</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+          <li class="nav-header">博客主页</li>
+          <li class="nav-item">
+            <a th:href="@{/}" class="nav-link active">
+              <i class="fa fa-home nav-icon"></i>
+              <p>首页</p>
+            </a>
+          </li>
+
+          <li class="nav-header">所有文章</li>
+          <li class="nav-item">
+            <a th:href="@{/articles}" class="nav-link">
+              <i class="fa fa-archive nav-icon"></i>
+              <p>文章</p>
+            </a>
+          </li>
+
+          <li class="nav-header">点滴记录</li>
+          <li class="nav-item">
+            <a th:href="@{/guestbook}" class="nav-link">
+              <i class="fa fa-comments nav-icon"></i>
+              <p>访客留言板</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper mt-3">
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card card-teal card-outline mb-5">
+              <div class="card-header">
+                <h3 class="card-title float-right">
+                  共 <span class="text-teal text-xl">5</span> 篇博客
+                </h3>
+              </div><!-- /.card-header -->
+
+              <div id="simpleCarousel" class="carousel slide mb-3" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                      <img th:src="@{/img/wallpaper4.png}" class="d-block w-100" style="height: 550px; object-fit: cover;" alt="图片1">
+                  </div>
+                  <div class="carousel-item">
+                      <img th:src="@{/img/wallpaper.jpg}" class="d-block w-100" style="height: 550px; object-fit: cover;" alt="图片2">
+                  </div>
+                  <div class="carousel-item">
+                      <img th:src="@{/img/wallpaper7.png}" class="d-block w-100" style="height: 550px; object-fit: cover;" alt="图片3">
+                  </div>
+                </div>
+
+                <a class="carousel-control-prev" href="#simpleCarousel" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <a class="carousel-control-next" href="#simpleCarousel" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+              </div>
+
+              <div class="card-body bg-hover-gray">
+                <div class="mb-1">
+                  <a th:href="@{/articles/其他/需要做的其他工作}" target="_blank" class="text-lg text-bold link-title">需要做的其他工作</a>
+                  <span class="badge badge-info">原创</span>
+                </div>
+                <p>描述了除了论文之外，六月到来之前需要完成的任务</p>
+                <p>
+                  <span class="text-sm mr-2"><i class="far fa-calendar-alt mr-1"></i> 2025-05-10 15：59</span>
+                  <span class="text-sm"><i class="far fa-eye mr-1"></i> 10</span>
+                </p>
+              </div>
+              <hr class="m-0">
+
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card widget-user sticky-top">
+              <div class="widget-user-header bg-info">
+                <h3 class="widget-user-username">Turnin</h3>
+                <h5 class="widget-user-desc">永远在学习的路上</h5>
+              </div>
+              <div class="widget-user-image">
+                <img class="img-circle elevation-2" th:src="@{/upload/profile.png}" alt="Author">
+              </div>
+              <div class="card-body pt-5">
+                <p class="text-muted">
+                  欢迎参观我的CSDN博客：<a href="https://blog.csdn.net/weixin_53318879?type=blog">技术博客</a><br>
+                  我的github: <a href="https://github.com/Re-restart">开源平台</a><br>
+                  想要联系请发邮箱： lhyx999888@outlook.com<br>
+                </p>
+                <ul class="list-group list-group-unbordered">
+                  <li class="list-group-item">
+                    <strong><i class="far fa-bookmark mr-2"></i>文章分类</strong>
+                    <a th:href="@{/articles/category/电机}" class="d-block link-title text-truncate">电机控制与常用算法</a>
+                    <a th:href="@{/articles/category/系统}" class="d-block link-title">数学基础与matlab仿真</a>
+                    <a th:href="@{/articles/category/机器人}" class="d-block link-title">机器人的设计与制作</a>
+                  </li>
+                  <li class="list-group-item">
+                    <strong><i class="fa fa-map-marker-alt mr-2"></i>位置</strong>
+                    <div class="text-muted">China</div>
+                  </li>
+                  <li class="list-group-item">
+                    <strong><i class="fa fa-pencil-alt mr-2"></i>技能</strong>
+                    <div class="text-muted">
+                      <span class="badge badge-success">Mechanical structure design</span>
+                      <span class="badge badge-success">C/C++/Python/Java/C#</span>
+                      <span class="badge badge-success">Embedded system</span>
+                      <span class="badge badge-success">Software simulation</span>
+                      <span class="badge badge-success">ML/DL/A little RL</span>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <strong><i class="fa fa-lightbulb mr-2"></i>爱好</strong>
+                    <div class="text-muted">
+                      <span class="badge badge-warning">编程</span>
+                      <span class="badge badge-warning">学习</span>
+                      <span class="badge badge-warning">航拍</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="main-footer">
+    <p class="text-center mb-1">Copyright © 2025 Turnin's Blog. All rights reserved.</p>
+    <p class="text-center"><a href="#">备案号</a></p>
+  </footer>
+</div>
+
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/adminlte.min.js}"></script>
+<script th:src="@{/js/tooltip.init.js}"></script>
+
+
+</body>
+</html>
